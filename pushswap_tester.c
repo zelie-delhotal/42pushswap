@@ -1,21 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstdelone.c                                     :+:      :+:    :+:   */
+/*   pushswap_tester.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gdelhota <gdelhota@student.42perpigna      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/13 19:18:06 by gdelhota          #+#    #+#             */
-/*   Updated: 2025/03/07 04:18:45 by gdelhota         ###   ########.fr       */
+/*   Created: 2025/03/07 04:29:30 by gdelhota          #+#    #+#             */
+/*   Updated: 2025/03/07 04:47:20 by gdelhota         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "libft/libft.h"
+#include "push_swap.h"
 
-void	ft_lstdelone(t_dll *lst)
+void	put_list(char *name, t_dll *lst)
 {
-	if (lst)
+	t_dll	*head;
+
+	if (lst == NULL)
 	{
-		free(ft_lstpop(&lst));
+		ft_printf("%s : NULL\n", name);
+		return ;
 	}
+	head = lst;
+	ft_printf("liste %s:\n %d ", name, lst->content);
+	lst = lst-> next;
+	while (lst != head)
+	{
+		ft_printf("%d ", lst->content);
+		lst = lst->next;
+	}
+	ft_printf("\n");
 }

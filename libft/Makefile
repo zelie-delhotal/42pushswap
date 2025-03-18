@@ -6,7 +6,7 @@
 #    By: gdelhota <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/05 15:41:48 by gdelhota          #+#    #+#              #
-#    Updated: 2025/02/14 16:34:08 by gdelhota         ###   ########.fr        #
+#    Updated: 2025/03/18 16:40:57 by gdelhota         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@ NAME = libft.a
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
 
-SRCS = ft_safe_atoi.c ft_lstnew.c ft_lstdelone.c ft_lstclear.c ft_lststack.c ft_lstpop.c ft_lstpush.c
+SRCS = ft_int_operations.c ft_safe_atoi.c ft_lstnew.c ft_lstdelone.c ft_lstclear.c ft_lststack.c ft_lstpop.c ft_lstpush.c
 
 OBJS = $(SRCS:.c=.o)
 

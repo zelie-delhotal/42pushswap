@@ -6,12 +6,27 @@
 /*   By: gdelhota <gdelhota@student.42perpignan.fr  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/27 09:25:34 by gdelhota          #+#    #+#             */
-/*   Updated: 2025/02/14 18:35:05 by gdelhota         ###   ########.fr       */
+/*   Updated: 2025/03/18 19:07:22 by gdelhota         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft/libft.h"
 #include "push_swap.h"
+
+int	get_size(t_dll *lst)
+{
+	t_dll	*head;
+	int		size;
+
+	head = lst;
+	size = 1;
+	while (lst->next != head)
+	{
+		lst = lst->next;
+		size++;
+	}
+	return (size);
+}
 
 int	has_no_doubles(t_dll *lst)
 {
@@ -54,6 +69,64 @@ int	is_sorted(t_dll *lst)
 		lst = lst->next;
 	}
 	return (1);
+}
+
+int	find_target_pos(int value, t_dll *dst)
+{
+	int		pos;
+	int		target_pos;
+	int		diff;
+	int		min_diff;
+	t_dll	*head;
+	
+	head = dst;
+	pos = 0;
+	target_pos = 0;
+	min_diff = head->content - value;
+	dst = dst->next;
+	while (dst != head && ++pos)
+	{
+		diff = dst->content - value;
+		if (diff < min_diff && diff >= 0)
+		{
+			min_diff = diff;
+			target_pos = dst->content - value;
+		}
+	}
+	return (target_pos);
+}
+
+// fills the parameter path with 4 ints
+// first value is nbr of rotations to apply to src, negative if reversed
+// second is boolean wether dst needs the same rotation or not
+// third is additional rotations to apply to src
+// fourth is additional rotations to apply to dst
+void	get_storing_path(int *path, t_dll *node, t_dll *src, t_dll *dst)
+{
+	int	diff;
+
+	path[0] = find_target_pos(node->content, src);
+	path[3] = find_target_pos(node->content, dst);
+	path[2] = 0;
+	diff = (path[3] - get_size(dst)) - (path[0] - get_size(src));
+	if (abs(path[3] - path[0]) < abs(diff))
+		diff = path[3] - path[0];
+	if (path[0] >= get_size(src) / 2)
+		path[0] -= get_size(src);
+	if (path[3] >= get_size(dst) / 2)
+		path[3] -= get_size(dst);
+	path[1] = (abs(path[3]) > abs(diff) || abs(path[0]) > abs(diff));
+	if (path[1])
+	{
+		if (abs(path[0]) < abs(path[3]))
+		{
+			path[0] = path[3];
+			path[3] = 0;
+			path[2] = diff;
+		}
+		else
+			path[3] = diff;
+	}
 }
 
 void	ft_error(char *error)
