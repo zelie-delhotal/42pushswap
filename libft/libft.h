@@ -6,7 +6,7 @@
 /*   By: gdelhota <gdelhota@student.42perpignan.fr> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/05 15:11:11 by gdelhota          #+#    #+#             */
-/*   Updated: 2025/03/18 16:42:26 by gdelhota         ###   ########.fr       */
+/*   Updated: 2025/03/19 15:17:12 by gdelhota         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,5 +34,6 @@ void	ft_lstclear(t_dll *lst);
 t_dll	*ft_lstpop(t_dll **lst);
 t_dll	*ft_lststack(t_dll *node, t_dll *stack);
 t_dll	*ft_lstpush(t_dll **node, t_dll *stack);
+int		get_dll_size(t_dll *lst);
 
 #endif
