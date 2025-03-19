@@ -6,14 +6,13 @@
 /*   By: gdelhota <gdelhota@student.42perpignan.fr  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/27 08:13:30 by gdelhota          #+#    #+#             */
-/*   Updated: 2025/03/19 17:08:07 by gdelhota         ###   ########.fr       */
+/*   Updated: 2025/03/19 20:31:16 by gdelhota         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft/libft.h"
 #include "push_swap.h"
 
-t_dll	*push_sublist(t_dll **src, t_dll *dst, int *sublist)
+t_dll	*push_sublist(t_dll **lsta, t_dll *lstb, int *sublist)
 {
 	int	i;
 	int	j;
@@ -28,16 +27,14 @@ t_dll	*push_sublist(t_dll **src, t_dll *dst, int *sublist)
 	{
 		if (++pos == sublist[i] && ++j)
 		{
-			dst = ft_lstpush(src, dst);
-			/*put_list("lstA", *src);
-			put_list("lstB", dst);*/
+			exec("pb", lsta, &lstb);
 			if (++i > sublist[0])
 				i = 1;
 		}
 		else
-			*src = (*src)->next;
+			exec("ra", lsta, &lstb);
 	}
-	return (dst);
+	return (lstb);
 }
 
 //returns an array of indexes for a sublist in ascending order
@@ -95,32 +92,25 @@ int	*get_biggest_sublist(t_dll *lst)
 	return (res);
 }
 
-void	push_swap(t_dll *lsta)
+void	push_swap(t_dll **lsta)
 {
 	t_dll	*lstb;
 	int		*sublist;
 	int		storing_path[4];
-	int		index;
-	int		cheapest_index;
 
-	check_for_doubles(lsta);
+	check_for_doubles(*lsta);
 	lstb = NULL;
-	while (!is_sorted_dll(lsta))
+	while (!is_sorted_dll(*lsta))
 	{
-		sublist = get_biggest_sublist(lsta);
-		lstb = push_sublist(&lsta, lstb, sublist);
-	}
-	//find cheapest value to store -> do it -> repeat
-	while (lstb != NULL)
-	{
-		index = -1;
-		cheapest_index = 0;
-		while (++index < get_dll_size(lstb))
-		{
-			get_storing_path(storing_path, lstb, lstb, lsta);
-		}
+		sublist = get_biggest_sublist(*lsta);
+		lstb = push_sublist(lsta, lstb, sublist);
 	}
 	free(sublist);
+	while (lstb != NULL)
+	{
+		get_optimal_storing_path(storing_path, lstb, *lsta);
+		put_away_value(storing_path, &lstb, lsta);
+	}
 }
 
 int	main(int ac, char **av)
@@ -147,6 +137,7 @@ int	main(int ac, char **av)
 		i++;
 	}
 	put_list("initiale", lst);
-	push_swap(lst);
+	push_swap(&lst);
+	put_list("finale", lst);
 	ft_lstclear(lst);
 }

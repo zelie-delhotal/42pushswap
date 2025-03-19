@@ -6,7 +6,7 @@
 /*   By: gdelhota <gdelhota@student.42perpignan.fr  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/27 09:25:34 by gdelhota          #+#    #+#             */
-/*   Updated: 2025/03/19 17:00:34 by gdelhota         ###   ########.fr       */
+/*   Updated: 2025/03/19 20:12:36 by gdelhota         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	check_for_doubles(t_dll *lst)
 			if (lst->content == compare->content)
 			{
 				ft_lstclear(lst);
-				ft_error("Error : Multiple instances of the same value in the list");
+				ft_error("Error\n");
 			}
 			compare = compare->next;
 		}
@@ -60,6 +60,7 @@ int	find_target_pos(int value, t_dll *dst)
 			min_diff = diff;
 			target_pos = dst->content - value;
 		}
+		dst = dst->next;
 	}
 	return (target_pos);
 }
@@ -95,4 +96,47 @@ void	get_storing_path(int *path, t_dll *node, t_dll *src, t_dll *dst)
 		else
 			path[3] = diff;
 	}
+}
+
+void	get_optimal_storing_path(int *res, t_dll *src, t_dll *dst)
+{
+	int		path[4];
+	t_dll	*curr_node;
+
+	get_storing_path(res, src, src, dst);
+	curr_node = src->next;
+	while (curr_node != src)
+	{
+		get_storing_path(path, curr_node, src, dst);
+		if ((path[0] + path[2] + path[3]) < (res[0] + res[2] + res[3]))
+			res = path;
+		curr_node = curr_node->next;
+	}
+}
+
+void	put_away_value(int *path, t_dll **lsta, t_dll **lstb)
+{
+	int	i;
+
+	i = -1;
+	while (++i < abs(path[0]) || i < abs(path[2]) || i < abs(path[3]))
+	{
+		if (i < abs(path[0]) && path[1] && path[0] > 0)
+			exec("rr ", lsta, lstb);
+		if (i < abs(path[0]) && !path[1] && path[0] > 0)
+			exec("ra ", lsta, lstb);
+		if (i < abs(path[0]) && path[1] && path[0] < 0)
+			exec("rrr ", lsta, lstb);
+		if (i < abs(path[0]) && !path[1] && path[0] < 0)
+			exec("rra ", lsta, lstb);
+		if (i < abs(path[2]) && path[2] > 0)
+			exec("ra ", lsta, lstb);
+		if (i < abs(path[2]) && path[2] < 0)
+			exec("rra ", lsta, lstb);
+		if (i < abs(path[3]) && path[3] > 0)
+			exec("rb ", lsta, lstb);
+		if (i < abs(path[3]) && path[3] < 0)
+			exec("rrb ", lsta, lstb);
+	}
+	exec("pb", lsta, lstb);
 }

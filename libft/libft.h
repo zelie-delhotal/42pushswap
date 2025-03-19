@@ -6,7 +6,7 @@
 /*   By: gdelhota <gdelhota@student.42perpignan.fr> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/05 15:11:11 by gdelhota          #+#    #+#             */
-/*   Updated: 2025/03/19 17:02:00 by gdelhota         ###   ########.fr       */
+/*   Updated: 2025/03/19 19:43:54 by gdelhota         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ typedef struct s_dll
 int		min(int a, int b);
 int		max(int a, int b);
 int		abs(int n);
+int		str_equals(char *stra, char *strb);
 void	ft_error(char *error);
 int		ft_safe_atoi(const char *str, int *res);
 t_dll	*ft_lstnew(int content);
