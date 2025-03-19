@@ -6,7 +6,7 @@
 /*   By: gdelhota <gdelhota@student.42perpignan.fr  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/27 09:25:34 by gdelhota          #+#    #+#             */
-/*   Updated: 2025/03/19 20:12:36 by gdelhota         ###   ########.fr       */
+/*   Updated: 2025/03/19 20:37:00 by gdelhota         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -138,5 +138,5 @@ void	put_away_value(int *path, t_dll **lsta, t_dll **lstb)
 		if (i < abs(path[3]) && path[3] < 0)
 			exec("rrb ", lsta, lstb);
 	}
-	exec("pb", lsta, lstb);
+	exec("pa", lsta, lstb);
 }
