@@ -6,7 +6,7 @@
 #    By: gdelhota <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/05 15:41:48 by gdelhota          #+#    #+#              #
-#    Updated: 2025/03/07 04:46:34 by gdelhota         ###   ########.fr        #
+#    Updated: 2025/03/19 17:06:29 by gdelhota         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,7 +35,7 @@ clean:
 	rm -f $(OBJS) $(OBJS) a.out
 
 fclean: clean
-	rm -f $(NAME)
+	rm -f $(NAME) libft/libft.a
 
 re: fclean all
 

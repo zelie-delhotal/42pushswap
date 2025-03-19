@@ -6,7 +6,7 @@
 /*   By: gdelhota <gdelhota@student.42perpignan.fr  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/27 08:13:30 by gdelhota          #+#    #+#             */
-/*   Updated: 2025/03/19 15:51:15 by gdelhota         ###   ########.fr       */
+/*   Updated: 2025/03/19 17:08:07 by gdelhota         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,25 +99,27 @@ void	push_swap(t_dll *lsta)
 {
 	t_dll	*lstb;
 	int		*sublist;
+	int		storing_path[4];
+	int		index;
+	int		cheapest_index;
 
-	if (!has_no_doubles(lsta))
-	{
-		ft_lstclear(lsta);
-		ft_error("Error: multiple instances of the same value");
-	}
+	check_for_doubles(lsta);
 	lstb = NULL;
-	while (lsta != NULL && !is_sorted(lsta))
+	while (!is_sorted_dll(lsta))
 	{
 		sublist = get_biggest_sublist(lsta);
 		lstb = push_sublist(&lsta, lstb, sublist);
-		put_list("A", lsta);
-		put_list("B", lstb);
 	}
 	//find cheapest value to store -> do it -> repeat
-	/*while (lstb != NULL)
+	while (lstb != NULL)
 	{
-
-	}*/
+		index = -1;
+		cheapest_index = 0;
+		while (++index < get_dll_size(lstb))
+		{
+			get_storing_path(storing_path, lstb, lstb, lsta);
+		}
+	}
 	free(sublist);
 }
 
