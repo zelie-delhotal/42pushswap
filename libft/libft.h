@@ -6,7 +6,7 @@
 /*   By: gdelhota <gdelhota@student.42perpignan.fr> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/05 15:11:11 by gdelhota          #+#    #+#             */
-/*   Updated: 2025/03/19 19:43:54 by gdelhota         ###   ########.fr       */
+/*   Updated: 2025/03/20 17:58:52 by gdelhota         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,11 +31,12 @@ int		str_equals(char *stra, char *strb);
 void	ft_error(char *error);
 int		ft_safe_atoi(const char *str, int *res);
 t_dll	*ft_lstnew(int content);
-void	ft_lstdelone(t_dll *lst);
+t_dll	*ft_dll_builder(int ac, char **av);
+void	ft_lstdelone(t_dll **lst);
 void	ft_lstclear(t_dll *lst);
 t_dll	*ft_lstpop(t_dll **lst);
-t_dll	*ft_lststack(t_dll *node, t_dll *stack);
-t_dll	*ft_lstpush(t_dll **node, t_dll *stack);
+void	ft_lststack(t_dll *node, t_dll **stack);
+void	ft_lstpush(t_dll **src, t_dll **dst);
 int		is_sorted_dll(t_dll *lst);
 int		get_dll_size(t_dll *lst);
 

@@ -6,13 +6,14 @@
 /*   By: gdelhota <gdelhota@student.42perpignan.fr  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/27 08:25:15 by gdelhota          #+#    #+#             */
-/*   Updated: 2025/03/19 20:21:36 by gdelhota         ###   ########.fr       */
+/*   Updated: 2025/03/20 22:29:29 by gdelhota         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PUSH_SWAP_H
 
 # define PUSH_SWAP_H
+# include <limits.h>
 # include "ft_printf.h"
 # include "libft/libft.h"
 

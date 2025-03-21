@@ -6,20 +6,20 @@
 /*   By: gdelhota <gdelhota@student.42perpignan.fr  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/27 08:13:30 by gdelhota          #+#    #+#             */
-/*   Updated: 2025/03/19 20:31:16 by gdelhota         ###   ########.fr       */
+/*   Updated: 2025/03/21 01:10:01 by gdelhota         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-t_dll	*push_sublist(t_dll **lsta, t_dll *lstb, int *sublist)
+void	push_sublist(t_dll **lsta, t_dll **lstb, int *sublist)
 {
 	int	i;
 	int	j;
 	int	pos;
 
 	i = sublist[0];
-	while (i > 1 && sublist[i] > sublist[i - 1])
+	while (i >= 1 && sublist[i] > sublist[i - 1])
 		i--;
 	pos = -1;
 	j = 0;
@@ -27,14 +27,14 @@ t_dll	*push_sublist(t_dll **lsta, t_dll *lstb, int *sublist)
 	{
 		if (++pos == sublist[i] && ++j)
 		{
-			exec("pb", lsta, &lstb);
+			if (!is_sorted_dll(*lsta))
+				exec("pb", lsta, lstb);
 			if (++i > sublist[0])
 				i = 1;
 		}
 		else
-			exec("ra", lsta, &lstb);
+			exec("ra", lsta, lstb);
 	}
-	return (lstb);
 }
 
 //returns an array of indexes for a sublist in ascending order
@@ -89,53 +89,51 @@ int	*get_biggest_sublist(t_dll *lst)
 		lst = lst->next;
 		i++;
 	}
+	int	c = 0;
+	ft_printf("sublist:");
+	while (++c <= res[0])
+	{
+		ft_printf("%d ", res[c]);
+	}
+	ft_printf("\n");
 	return (res);
 }
 
 void	push_swap(t_dll **lsta)
 {
-	t_dll	*lstb;
+	t_dll	**lstb;
 	int		*sublist;
 	int		storing_path[4];
 
 	check_for_doubles(*lsta);
-	lstb = NULL;
+	lstb = malloc(sizeof(t_dll **));
+	*lstb = NULL;
 	while (!is_sorted_dll(*lsta))
 	{
 		sublist = get_biggest_sublist(*lsta);
-		lstb = push_sublist(lsta, lstb, sublist);
+		push_sublist(lsta, lstb, sublist);
 	}
-	free(sublist);
-	while (lstb != NULL)
+	if (sublist)
+		free(sublist);
+	while (*lstb != NULL)
 	{
-		get_optimal_storing_path(storing_path, lstb, *lsta);
-		put_away_value(storing_path, &lstb, lsta);
+		get_optimal_storing_path(storing_path, *lstb, *lsta);
+		put_away_value(storing_path, lsta, lstb);
+		if ((*lsta)->content > (*lsta)->next->content)
+			exec("ra", lsta, lstb);
 	}
+	while ((*lsta)->content > (*lsta)->prev->content)
+		exec("ra", lsta, lstb);
+	free(lstb);
 }
 
 int	main(int ac, char **av)
 {
-	int		i;
-	int		value;
 	t_dll	*lst;
 
-	if (ac < 2)
-		return (0);
-	lst = NULL;
-	i = 1;
-	while (i < ac)
-	{
-		if (ft_safe_atoi(av[i], &value))
-		{
-			lst = ft_lststack(ft_lstnew(value), lst);
-			if (!lst)
-				return (0);
-			lst = lst->next;
-		}
-		else
-			return (ft_lstclear(lst), 0);
-		i++;
-	}
+	lst = ft_dll_builder(ac, av);
+	if (!lst)
+		ft_error("Error");
 	put_list("initiale", lst);
 	push_swap(&lst);
 	put_list("finale", lst);

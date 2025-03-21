@@ -6,7 +6,7 @@
 /*   By: gdelhota <gdelhota@student.42perpigna      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 19:34:57 by gdelhota          #+#    #+#             */
-/*   Updated: 2025/03/19 20:42:59 by gdelhota         ###   ########.fr       */
+/*   Updated: 2025/03/20 22:34:16 by gdelhota         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,9 +34,9 @@ void	exec(char *order, t_dll **lsta, t_dll **lstb)
 		*lstb = (*lstb)->prev;
 	}
 	if (str_equals(order, "pa"))
-		*lsta = ft_lstpush(lstb, *lsta);
+		ft_lstpush(lstb, lsta);
 	if (str_equals(order, "pb"))
-		*lstb = ft_lstpush(lsta, *lstb);
+		ft_lstpush(lsta, lstb);
 	put_list("A", *lsta);
 	put_list("B", *lstb);
 }
