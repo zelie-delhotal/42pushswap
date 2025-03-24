@@ -6,7 +6,7 @@
 /*   By: gdelhota <gdelhota@student.42perpigna      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 19:20:31 by gdelhota          #+#    #+#             */
-/*   Updated: 2024/12/28 21:04:28 by gdelhota         ###   ########.fr       */
+/*   Updated: 2025/01/04 18:42:31 by gdelhota         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,6 @@ t_list	*ft_lstnew(void *content)
 		return (NULL);
 	res->content = content;
 	res->next = res;
-	res->previous = res;
+	res->prev = res;
 	return (res);
 }
