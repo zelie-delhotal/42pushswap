@@ -6,25 +6,31 @@
 /*   By: gdelhota <gdelhota@student.42perpignan.fr  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/27 08:13:30 by gdelhota          #+#    #+#             */
-/*   Updated: 2025/02/14 17:49:53 by gdelhota         ###   ########.fr       */
+/*   Updated: 2025/02/14 18:37:23 by gdelhota         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft/libft.h"
 #include "push_swap.h"
-#include "ft_printf.h"
 
 void	push_swap(t_dll *lsta)
 {
-	lsta = NULL;
-	ft_printf("a");
+	if (!has_no_doubles(lsta))
+	{
+		ft_lstclear(lsta);
+		ft_error("Error");
+	}
+	if (is_sorted(lsta))
+		ft_printf("Sorted!");
+	else
+		ft_printf("Unsorted!");
 }
 
 int	main(int ac, char **av)
 {
 	int		i;
 	int		value;
-	t_dll	*lsta;
+	t_dll	*lst;
 
 	if (ac < 2)
 		return (0);
@@ -34,13 +40,14 @@ int	main(int ac, char **av)
 	{
 		if (ft_safe_atoi(av[i], &value))
 		{
-			lsta = ft_lststack(ft_lstnew(value), lsta);
-			if (!lsta)
+			lst = ft_lststack(ft_lstnew(value), lst);
+			if (!lst)
 				return (0);
 		}
 		else
-			return (ft_lstclear(lsta), 0);
+			return (ft_lstclear(lst), 0);
 		i++;
 	}
-	push_swap(lsta);
+	push_swap(lst);
+	ft_lstclear(lst);
 }

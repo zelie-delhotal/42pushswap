@@ -6,34 +6,63 @@
 /*   By: gdelhota <gdelhota@student.42perpignan.fr  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/27 09:25:34 by gdelhota          #+#    #+#             */
-/*   Updated: 2024/12/27 10:38:54 by gdelhota         ###   ########.fr       */
+/*   Updated: 2025/02/14 18:35:05 by gdelhota         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft/libft.h"
 #include "push_swap.h"
 
-int	has_no_doubles(t_list *list)
+int	has_no_doubles(t_dll *lst)
 {
-	t_list	*head;
-	t_list	*compare;
+	t_dll	*head;
+	t_dll	*compare;
 
-	head = list;
-	compare = list;
-	list = list->next;
-	if (list->content == compare->content && list != content)
+	head = lst;
+	compare = lst;
+	if (lst->content == compare->content && lst != compare)
 		return (0);
-	while (list != head)
+	lst = lst->next;
+	while (lst != head)
 	{
-		list = list->next;
 		compare = head;
-		while (list != compare)
+		while (lst != compare)
 		{
-			if (list->content == compare->content)
+			if (lst->content == compare->content)
 				return (0);
 			compare = compare->next;
 		}
-		list = list->next;
+		lst = lst->next;
 	}
 	return (1);
+}
+
+int	is_sorted(t_dll *lst)
+{
+	t_dll	*head;
+	int		comp_value;
+
+	comp_value = lst->content;
+	head = lst;
+	if (comp_value > lst->content)
+		return (0);
+	lst = lst->next;
+	while (lst != head)
+	{
+		if (comp_value > lst->content)
+			return (0);
+		lst = lst->next;
+	}
+	return (1);
+}
+
+void	ft_error(char *error)
+{
+	int	len;
+
+	len = 0;
+	while (error[len])
+		len++;
+	write(2, error, len);
+	exit(1);
 }
