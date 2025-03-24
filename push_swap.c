@@ -6,7 +6,7 @@
 /*   By: gdelhota <gdelhota@student.42perpignan.fr  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/27 08:13:30 by gdelhota          #+#    #+#             */
-/*   Updated: 2025/02/14 18:37:23 by gdelhota         ###   ########.fr       */
+/*   Updated: 2025/02/14 19:04:04 by gdelhota         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,15 +15,19 @@
 
 void	push_swap(t_dll *lsta)
 {
+	t_dll	*lstb;
+
 	if (!has_no_doubles(lsta))
 	{
 		ft_lstclear(lsta);
 		ft_error("Error");
 	}
 	if (is_sorted(lsta))
-		ft_printf("Sorted!");
-	else
-		ft_printf("Unsorted!");
+		return ();
+	lstb = NULL;
+	//check for biggest sorted sublist (not necessarilly continuous) and push it
+	//find cheapest value to put away -> do it -> repeat
+	//idea: use an array to store costs & have long term vision (might be computation heavy)
 }
 
 int	main(int ac, char **av)
