@@ -1,18 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstpush.c                                       :+:      :+:    :+:   */
+/*   ft_int_operations.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gdelhota <gdelhota@student.42perpignan.fr  +#+  +:+       +#+        */
+/*   By: gdelhota <gdelhota@student.42perpigna      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/28 21:38:16 by gdelhota          #+#    #+#             */
-/*   Updated: 2025/03/07 04:20:11 by gdelhota         ###   ########.fr       */
+/*   Created: 2025/03/18 16:29:12 by gdelhota          #+#    #+#             */
+/*   Updated: 2025/03/18 16:41:51 by gdelhota         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-t_dll	*ft_lstpush(t_dll **node, t_dll *stack)
+int	max(int a, int b)
 {
-	return (ft_lststack(ft_lstpop(node), stack));
+	if (a < b)
+		return (b);
+	return (a);
+}
+
+int	min(int a, int b)
+{
+	if (a < b)
+		return (a);
+	return (b);
+}
+
+int	abs(int n)
+{
+	if (n < 0)
+		return (-n);
+	return (n);
 }

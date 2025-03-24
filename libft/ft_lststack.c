@@ -6,13 +6,13 @@
 /*   By: gdelhota <gdelhota@student.42perpignan.fr  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/28 21:42:59 by gdelhota          #+#    #+#             */
-/*   Updated: 2025/02/14 16:08:45 by gdelhota         ###   ########.fr       */
+/*   Updated: 2025/03/18 16:32:32 by gdelhota         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-t_dll	*ft_lststack(t_dll *node,  t_dll *stack)
+t_dll	*ft_lststack(t_dll *node, t_dll *stack)
 {
 	if (node == NULL)
 	{

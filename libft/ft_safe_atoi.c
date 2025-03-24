@@ -6,7 +6,7 @@
 /*   By: gdelhota <gdelhota@student.42perpigna      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/30 16:42:42 by gdelhota          #+#    #+#             */
-/*   Updated: 2025/02/14 16:19:58 by gdelhota         ###   ########.fr       */
+/*   Updated: 2025/03/18 16:33:05 by gdelhota         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 // converts *str to int and stores the value in res
 // returns 0 on failure
-int		ft_safe_atoi(const char *str, int *res)
+int	ft_safe_atoi(const char *str, int *res)
 {
 	int		i;
 	int		sign;
