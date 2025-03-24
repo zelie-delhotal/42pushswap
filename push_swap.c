@@ -6,7 +6,7 @@
 /*   By: gdelhota <gdelhota@student.42perpignan.fr  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/27 08:13:30 by gdelhota          #+#    #+#             */
-/*   Updated: 2025/02/14 16:11:23 by gdelhota         ###   ########.fr       */
+/*   Updated: 2025/02/14 17:49:53 by gdelhota         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 
 void	push_swap(t_dll *lsta)
 {
+	lsta = NULL;
 	ft_printf("a");
 }
 

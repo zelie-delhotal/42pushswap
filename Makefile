@@ -6,26 +6,30 @@
 #    By: gdelhota <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/05 15:41:48 by gdelhota          #+#    #+#              #
-#    Updated: 2025/02/14 16:34:08 by gdelhota         ###   ########.fr        #
+#    Updated: 2025/02/14 17:51:27 by gdelhota         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = libft.a
+NAME = pushswap
 
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
 
-SRCS = ft_safe_atoi.c ft_lstnew.c ft_lstdelone.c ft_lstclear.c ft_lststack.c ft_lstpop.c ft_lstpush.c
+SRCS = push_swap.c ft_printf.c
+ 
+LIBS = libft/libft.a
 
 OBJS = $(SRCS:.c=.o)
 
 %.o: %.c
 	$(CC) $(CFLAGS) -c $< -o $@
 
-$(NAME): $(OBJS)
-	ar -rcs $(NAME) $(OBJS)
+#$(NAME):
+#	$(CC) $(CFLAGS) -c $(SRCS) -o $(NAME)
 
-all: $(NAME)
+all:
+	cd libft && $(MAKE) all clean
+	$(CC) $(CFLAGS) $(SRCS) $(LIBS) -o $(NAME)
 
 clean:
 	rm -f $(OBJS) $(OBJS) a.out
