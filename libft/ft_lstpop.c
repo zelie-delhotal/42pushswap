@@ -6,7 +6,7 @@
 /*   By: gdelhota <gdelhota@student.42perpignan.fr  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/28 21:06:09 by gdelhota          #+#    #+#             */
-/*   Updated: 2025/03/18 16:32:43 by gdelhota         ###   ########.fr       */
+/*   Updated: 2025/03/20 20:44:05 by gdelhota         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,11 @@ t_dll	*ft_lstpop(t_dll **lst)
 
 	if (*lst)
 	{
-		if ((*lst)->prev)
-			(*lst)->prev->next = (*lst)->next;
-		if ((*lst)->next)
-			(*lst)->next->prev = (*lst)->prev;
 		node = *lst;
-		if ((*lst)->next != (*lst))
-			*lst = (*lst)->next;
+		node->prev->next = node->next;
+		node->next->prev = node->prev;
+		if (node->next != node)
+			*lst = node->next;
 		else
 			*lst = NULL;
 		node->next = node;
@@ -35,3 +33,28 @@ t_dll	*ft_lstpop(t_dll **lst)
 	}
 	return (NULL);
 }
+/*
+#include "../push_swap.h"
+int main(int ac, char **av)
+{
+	t_dll *lst = ft_dll_builder(ac, av);
+	put_list("initiale", lst);
+	t_dll *node = ft_lstpop(&lst);
+	put_list("node", node);
+	put_list("list", lst);
+	ft_lstpush(&node, &lst);
+	put_list("node", node);
+	put_list("list", lst);
+	ft_lstpush(&lst, &node);
+	put_list("node", node);
+	put_list("list", lst);
+	ft_lstpush(&lst, &node);
+	put_list("node", node);
+	put_list("list", lst);
+	ft_lstpush(&lst, &node);
+	put_list("node", node);
+	put_list("list", lst);
+	ft_lstpush(&lst, &node);
+	put_list("node", node);
+	put_list("list", lst);
+}*/

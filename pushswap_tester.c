@@ -6,7 +6,7 @@
 /*   By: gdelhota <gdelhota@student.42perpigna      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 04:29:30 by gdelhota          #+#    #+#             */
-/*   Updated: 2025/03/07 04:47:20 by gdelhota         ###   ########.fr       */
+/*   Updated: 2025/03/20 01:05:01 by gdelhota         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	put_list(char *name, t_dll *lst)
 		return ;
 	}
 	head = lst;
-	ft_printf("liste %s:\n %d ", name, lst->content);
+	ft_printf("liste %s: %d ", name, lst->content);
 	lst = lst-> next;
 	while (lst != head)
 	{

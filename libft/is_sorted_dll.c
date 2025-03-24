@@ -6,7 +6,7 @@
 /*   By: gdelhota <gdelhota@student.42perpigna      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 17:01:06 by gdelhota          #+#    #+#             */
-/*   Updated: 2025/03/19 17:01:34 by gdelhota         ###   ########.fr       */
+/*   Updated: 2025/03/20 02:19:37 by gdelhota         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,21 +15,16 @@
 int	is_sorted_dll(t_dll *lst)
 {
 	t_dll	*head;
-	int		comp_value;
 
-	if (lst == NULL)
+	if (lst == NULL || lst->next == lst)
 		return (1);
-	comp_value = lst->content;
 	head = lst;
-	if (comp_value > lst->content)
-		return (0);
 	lst = lst->next;
 	while (lst != head)
 	{
-		if (comp_value > lst->content)
+		if (lst->content < lst->prev->content)
 			return (0);
 		lst = lst->next;
 	}
 	return (1);
 }
-

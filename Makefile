@@ -6,11 +6,11 @@
 #    By: gdelhota <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/05 15:41:48 by gdelhota          #+#    #+#              #
-#    Updated: 2025/03/19 19:38:41 by gdelhota         ###   ########.fr        #
+#    Updated: 2025/03/20 00:25:50 by gdelhota         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = pushswap
+NAME = push_swap
 
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
