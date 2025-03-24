@@ -6,13 +6,13 @@
 /*   By: gdelhota <gdelhota@student.42perpigna      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 19:20:31 by gdelhota          #+#    #+#             */
-/*   Updated: 2025/01/04 18:42:31 by gdelhota         ###   ########.fr       */
+/*   Updated: 2025/02/05 15:39:10 by gdelhota         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-t_list	*ft_lstnew(void *content)
+t_list	*ft_lstnew(int content)
 {
 	t_list	*res;
 

@@ -6,7 +6,7 @@
 /*   By: gdelhota <gdelhota@student.42perpignan.fr  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/28 21:38:16 by gdelhota          #+#    #+#             */
-/*   Updated: 2025/01/30 19:00:24 by gdelhota         ###   ########.fr       */
+/*   Updated: 2025/02/05 17:44:15 by gdelhota         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,5 @@
 
 void	ft_lstpush(t_list *node, t_list *stack)
 {
-	ft_lstpop(node);
-	ft_lststack(node, &stack);
+	ft_lststack(ft_lstpop(node), stack);
 }

@@ -6,37 +6,42 @@
 /*   By: gdelhota <gdelhota@student.42perpignan.fr  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/27 08:13:30 by gdelhota          #+#    #+#             */
-/*   Updated: 2025/01/30 18:54:31 by gdelhota         ###   ########.fr       */
+/*   Updated: 2025/02/05 18:18:18 by gdelhota         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft/libft.h"
 #include "push_swap.h"
+#include "ft_printf.h"
 
-int	ft_lstadd_front(t_list **lst, char *content)
+void	push_swap(t_list *lsta)
 {
-	int		value;
-
-	if (!ft_safe_atoi(content, &value))
-		return (0);
-	res = lst_new(&value);
-	if (!res)
-		return (NULL);
-	ft_lststack(lst, res);
-	return (1);
+	ft_printf("a");
 }
 
 int	main(int ac, char **av)
 {
 	int		i;
-	t_list	lsta;
+	int		value;
+	t_list	*lsta;
 
 	if (ac < 2)
-		return (-1);
-	lsta = ft_lstnew(av[1]);
-	if (!lsta)
-		return (-1);
-	i = 2;
-	while (i < ac && ft_lstadd_front(av[i]))
+		return (0);
+	lsta = NULL;
+	i = 1;
+	/*while (i < ac)
+	{
+		if (ft_safe_atoi(av[i], &value))
+		{
+			if (!ft_lststack(ft_lstnew(value), lsta))
+				return (ft_lstclear(&lsta), 0);
+		}
+		else
+			return (ft_lstclear(&lsta), 0);
 		i++;
+	}*/
+	ft_safe_atoi(av[1], &value);
+	ft_lststack(ft_lstnew(value), lsta);
+	//endtest
+	push_swap(lsta);
 }
