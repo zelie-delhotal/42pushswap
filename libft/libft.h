@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gdelhota <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: gdelhota <gdelhota@student.42perpignan.fr> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/05 15:11:11 by gdelhota          #+#    #+#             */
-/*   Updated: 2025/02/05 17:39:12 by gdelhota         ###   ########.fr       */
+/*   Updated: 2025/02/14 16:09:55 by gdelhota         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,19 +17,19 @@
 # include <unistd.h>
 # include <stdlib.h>
 
-typedef struct s_list
+typedef struct s_dll
 {
 	int				content;
-	struct s_list	*next;
-	struct s_list	*prev;
-}				t_list;
+	struct s_dll	*next;
+	struct s_dll	*prev;
+}				t_dll;
 
 int		ft_safe_atoi(const char *str, int *res);
-t_list	*ft_lstnew(int content);
-void	ft_lstdelone(t_list *lst);
-void	ft_lstclear(t_list **lst);
-t_list	*ft_lstpop(t_list *lst);
-int		ft_lststack(t_list *node,  t_list *stack);
-void	ft_lst_push(t_list *node, t_list *stack);
+t_dll	*ft_lstnew(int content);
+void	ft_lstdelone(t_dll *lst);
+void	ft_lstclear(t_dll *lst);
+t_dll	*ft_lstpop(t_dll *lst);
+t_dll	*ft_lststack(t_dll *node,  t_dll *stack);
+t_dll	*ft_lst_push(t_dll *node, t_dll *stack);
 
 #endif

@@ -6,17 +6,16 @@
 /*   By: gdelhota <gdelhota@student.42perpigna      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 19:18:06 by gdelhota          #+#    #+#             */
-/*   Updated: 2025/02/05 17:33:24 by gdelhota         ###   ########.fr       */
+/*   Updated: 2025/02/14 16:06:58 by gdelhota         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_lstdelone(t_list *lst)
+void	ft_lstdelone(t_dll *lst)
 {
 	if (lst)
 	{
-		ft_lstpop(lst);
-		free(lst);
+		free(ft_lstpop(lst));
 	}
 }

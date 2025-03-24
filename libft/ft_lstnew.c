@@ -6,17 +6,17 @@
 /*   By: gdelhota <gdelhota@student.42perpigna      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 19:20:31 by gdelhota          #+#    #+#             */
-/*   Updated: 2025/02/05 15:39:10 by gdelhota         ###   ########.fr       */
+/*   Updated: 2025/02/14 16:07:23 by gdelhota         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-t_list	*ft_lstnew(int content)
+t_dll	*ft_lstnew(int content)
 {
-	t_list	*res;
+	t_dll	*res;
 
-	res = (t_list *) malloc(sizeof(t_list));
+	res = (t_dll *) malloc(sizeof(t_dll));
 	if (!res)
 		return (NULL);
 	res->content = content;

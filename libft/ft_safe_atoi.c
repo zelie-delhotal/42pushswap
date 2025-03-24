@@ -6,18 +6,21 @@
 /*   By: gdelhota <gdelhota@student.42perpigna      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/30 16:42:42 by gdelhota          #+#    #+#             */
-/*   Updated: 2025/02/05 18:11:32 by gdelhota         ###   ########.fr       */
+/*   Updated: 2025/02/14 16:19:58 by gdelhota         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <limits.h>
+
 // converts *str to int and stores the value in res
-// sets res to 0 and returns false if *str is not a number or has 2+ signs
+// returns 0 on failure
 int		ft_safe_atoi(const char *str, int *res)
 {
-	int	i;
-	int	sign;
+	int		i;
+	int		sign;
+	long	temp;
 
-	*res = 0;
+	temp = 0;
 	sign = 1;
 	i = 0;
 	if (str[i] == '+' || str[i] == '-')
@@ -28,9 +31,12 @@ int		ft_safe_atoi(const char *str, int *res)
 	}
 	while (str[i] >= '0' && str[i] <= '9')
 	{
-		*res = (*res * 10) + (sign * (str[i] - '0'));
+		temp = (temp * 10) + (sign * (str[i] - '0'));
+		if (temp > INT_MAX || temp < INT_MIN)
+			return (0);
 		i++;
 	}
+	*res = (int) temp;
 	return (str[i] == 0);
 }
 
