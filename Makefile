@@ -6,7 +6,7 @@
 #    By: gdelhota <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/05 15:41:48 by gdelhota          #+#    #+#              #
-#    Updated: 2025/03/19 17:06:29 by gdelhota         ###   ########.fr        #
+#    Updated: 2025/03/19 19:38:41 by gdelhota         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@ NAME = pushswap
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
 
-SRCS = push_swap.c push_swap_utils.c ft_printf.c pushswap_tester.c
+SRCS = push_swap.c push_swap_utils.c ft_printf.c exec.c pushswap_tester.c
  
 LIBS = libft/libft.a
 
