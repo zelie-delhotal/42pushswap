@@ -6,7 +6,7 @@
 /*   By: gdelhota <gdelhota@student.42perpignan.fr  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/27 08:13:30 by gdelhota          #+#    #+#             */
-/*   Updated: 2025/03/18 18:57:55 by gdelhota         ###   ########.fr       */
+/*   Updated: 2025/03/19 15:51:15 by gdelhota         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ t_dll	*push_sublist(t_dll **src, t_dll *dst, int *sublist)
 {
 	int	i;
 	int	j;
-	int pos;
+	int	pos;
 
 	i = sublist[0];
 	while (i > 1 && sublist[i] > sublist[i - 1])
@@ -68,59 +68,57 @@ int	*get_sublist_indexes(t_dll *lst, int lst_size, int start_pos)
 	return (sublist);
 }
 
+int	*get_biggest_sublist(t_dll *lst)
+{
+	int		i;
+	int		*sublist;
+	int		*res;
+	t_dll	*head;
+
+	res = get_sublist_indexes(lst, get_dll_size(lst), 0);
+	head = lst;
+	lst = lst->next;
+	i = 1;
+	while (lst != head)
+	{
+		sublist = get_sublist_indexes(lst, get_dll_size(lst), i);
+		if (sublist[0] > res[0])
+		{
+			free(res);
+			res = sublist;
+		}
+		else
+			free(sublist);
+		lst = lst->next;
+		i++;
+	}
+	return (res);
+}
+
 void	push_swap(t_dll *lsta)
 {
 	t_dll	*lstb;
-	t_dll	*head;
-	int		index;
-	int		*sublist_indexes;
-	int		*biggest_sublist;
+	int		*sublist;
 
 	if (!has_no_doubles(lsta))
 	{
 		ft_lstclear(lsta);
-		ft_error("Error");
+		ft_error("Error: multiple instances of the same value");
 	}
-	if (is_sorted(lsta))
-		return;
 	lstb = NULL;
 	while (lsta != NULL && !is_sorted(lsta))
 	{
-		//check for biggest sorted sublist (not necessarilly continuous)
-		biggest_sublist = get_sublist_indexes(lsta, get_size(lsta), 0);
-		head = lsta;
-		lsta = lsta->next;
-		index = 1;
-		while (lsta != head)
-		{
-			sublist_indexes = get_sublist_indexes(lsta, get_size(lsta), index);
-			if (sublist_indexes[0] > biggest_sublist[0])
-			{
-				free(biggest_sublist);
-				biggest_sublist = sublist_indexes;
-			}
-			else
-				free(sublist_indexes);
-			lsta = lsta->next;
-			index++;
-		}
-		/*
-		int	i = 1;
-		while (i <= biggest_sublist[0])
-		{
-			ft_printf("%d ", biggest_sublist[i]);
-		 	i++;
-		}
-		ft_printf("\n");
-		*/
-		//push said sublist in list b
-		lstb = push_sublist(&lsta, lstb, biggest_sublist);
+		sublist = get_biggest_sublist(lsta);
+		lstb = push_sublist(&lsta, lstb, sublist);
 		put_list("A", lsta);
 		put_list("B", lstb);
 	}
 	//find cheapest value to store -> do it -> repeat
-	//idea: use an array to store costs & have long term vision (might be computation heavy)
-	free(biggest_sublist);
+	/*while (lstb != NULL)
+	{
+
+	}*/
+	free(sublist);
 }
 
 int	main(int ac, char **av)
