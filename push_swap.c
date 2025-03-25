@@ -6,7 +6,7 @@
 /*   By: gdelhota <gdelhota@student.42perpignan.fr  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/27 08:13:30 by gdelhota          #+#    #+#             */
-/*   Updated: 2025/03/21 01:10:01 by gdelhota         ###   ########.fr       */
+/*   Updated: 2025/03/25 17:17:57 by gdelhota         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,8 +117,9 @@ void	push_swap(t_dll **lsta)
 		free(sublist);
 	while (*lstb != NULL)
 	{
-		get_optimal_storing_path(storing_path, *lstb, *lsta);
-		put_away_value(storing_path, lsta, lstb);
+		//get_optimal_storing_path(storing_path, *lstb, *lsta);
+		//ft_printf("optimal path %d %d %d %d\n", storing_path[0], storing_path[1], storing_path[2], storing_path[3]);
+		put_away_value(get_optimal_storing_path(storing_path, *lstb, *lsta), lsta, lstb);
 		if ((*lsta)->content > (*lsta)->next->content)
 			exec("ra", lsta, lstb);
 	}

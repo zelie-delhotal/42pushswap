@@ -6,7 +6,7 @@
 /*   By: gdelhota <gdelhota@student.42perpignan.fr  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/27 09:25:34 by gdelhota          #+#    #+#             */
-/*   Updated: 2025/03/21 03:11:21 by gdelhota         ###   ########.fr       */
+/*   Updated: 2025/03/25 18:15:55 by gdelhota         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,28 +72,28 @@ int	find_target_pos(int value, t_dll *dst)
 }
 
 // fills the path parameter with 4 ints
-// first value is nbr of rotations to apply to src, negative if reversed
-// second is boolean wether dst needs the same rotation or not
-// third is additional rotations to apply to src
-// fourth is additional rotations to apply to dst
-void	get_storing_path(int *path, t_dll *node, t_dll *src, t_dll *dst)
+// first value is nbr of rotations to apply to lstb, negative if reversed
+// second is boolean wether lsta needs the same rotation or not
+// third is additional rotations to apply to lstb
+// fourth is additional rotations to apply to lsta
+void	get_storing_path(int *path, t_dll *node, t_dll *lstb, t_dll *lsta)
 {
 	int	diff;
 
 	ft_printf("position \n");
-	path[0] = find_target_pos(node->content, src);
+	path[0] = find_target_pos(node->content, lstb);
 	ft_printf("target \n");
-	path[3] = find_target_pos(node->content, dst);
+	path[3] = find_target_pos(node->content, lsta);
 	path[2] = 0;
-	diff = ((path[3] - get_dll_size(dst)) - (path[0] - get_dll_size(src)));
+	diff = ((path[3] - get_dll_size(lsta)) - (path[0] - get_dll_size(lstb)));
 	if (abs(path[3] - path[0]) < abs(diff))
 		diff = path[3] - path[0];
-	if (path[0] > get_dll_size(src) / 2)
-		path[0] -= get_dll_size(src);
-	if (path[3] > get_dll_size(dst) / 2)
-		path[3] -= get_dll_size(dst);
-	path[1] = (abs(path[3]) > abs(diff % get_dll_size(dst))
-		   || abs(path[0]) > abs(diff % get_dll_size(src)));
+	if (path[0] > get_dll_size(lstb) / 2)
+		path[0] -= get_dll_size(lstb);
+	if (path[3] > get_dll_size(lsta) / 2)
+		path[3] -= get_dll_size(lsta);
+	path[1] = (abs(path[3]) > abs(diff % get_dll_size(lsta))
+		   || abs(path[0]) > abs(diff % get_dll_size(lstb)));
 	if (path[1])
 	{
 		if (abs(path[0]) < abs(path[3]))
@@ -109,7 +109,7 @@ void	get_storing_path(int *path, t_dll *node, t_dll *src, t_dll *dst)
 	ft_printf("weight %d\n", abs(path[0]) + abs(path[2]) + abs(path[3]));
 }
 
-void	get_optimal_storing_path(int *res, t_dll *src, t_dll *dst)
+int	*get_optimal_storing_path(int *res, t_dll *src, t_dll *dst)
 {
 	int		path[4];
 	t_dll	*curr_node;
@@ -121,27 +121,29 @@ void	get_optimal_storing_path(int *res, t_dll *src, t_dll *dst)
 		get_storing_path(path, curr_node, src, dst);
 		if ((abs(path[0]) + abs(path[2]) + abs(path[3])) 
 			< (abs(res[0]) + abs(res[2]) + abs(res[3])))
-			res = path;
+			ft_array_copy(path, res, 4);
 		curr_node = curr_node->next;
 	}
 	ft_printf("optimal path %d %d %d %d\n", res[0], res[1], res[2], res[3]);
+	return (res);
 }
 
 void	put_away_value(int *path, t_dll **lsta, t_dll **lstb)
 {
 	int	i;
 
-	i = -1;
-	while (++i < abs(path[0]) || i < abs(path[2]) || i < abs(path[3]))
+	i = 0;
+	ft_printf("pushing path %d %d %d %d\n", path[0], path[1], path[2], path[3]);
+	while (i < abs(path[0]) || i < abs(path[2]) || i < abs(path[3]))
 	{
 		if (i < abs(path[0]) && path[1] && path[0] > 0)
 			exec("rr", lsta, lstb);
 		if (i < abs(path[0]) && !path[1] && path[0] > 0)
-			exec("ra", lsta, lstb);
+			exec("rb", lsta, lstb);
 		if (i < abs(path[0]) && path[1] && path[0] < 0)
 			exec("rrr", lsta, lstb);
 		if (i < abs(path[0]) && !path[1] && path[0] < 0)
-			exec("rra", lsta, lstb);
+			exec("rrb", lsta, lstb);
 		if (i < abs(path[2]) && path[2] > 0)
 			exec("rb", lsta, lstb);
 		if (i < abs(path[2]) && path[2] < 0)
@@ -150,6 +152,7 @@ void	put_away_value(int *path, t_dll **lsta, t_dll **lstb)
 			exec("ra", lsta, lstb);
 		if (i < abs(path[3]) && path[3] < 0)
 			exec("rra", lsta, lstb);
+		i++;
 	}
 	exec("pa", lsta, lstb);
 }

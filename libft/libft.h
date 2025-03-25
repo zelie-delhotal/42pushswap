@@ -6,7 +6,7 @@
 /*   By: gdelhota <gdelhota@student.42perpignan.fr> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/05 15:11:11 by gdelhota          #+#    #+#             */
-/*   Updated: 2025/03/20 17:58:52 by gdelhota         ###   ########.fr       */
+/*   Updated: 2025/03/25 17:43:10 by gdelhota         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ typedef struct s_dll
 int		min(int a, int b);
 int		max(int a, int b);
 int		abs(int n);
+void	ft_array_copy(int *src, int *dst, int size);
 int		str_equals(char *stra, char *strb);
 void	ft_error(char *error);
 int		ft_safe_atoi(const char *str, int *res);
