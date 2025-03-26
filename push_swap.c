@@ -6,7 +6,7 @@
 /*   By: gdelhota <gdelhota@student.42perpignan.fr  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/27 08:13:30 by gdelhota          #+#    #+#             */
-/*   Updated: 2025/03/26 03:41:10 by gdelhota         ###   ########.fr       */
+/*   Updated: 2025/03/26 04:07:25 by gdelhota         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,6 +109,7 @@ void	push_swap(t_dll **lsta)
 int	main(int ac, char **av)
 {
 	t_dll	*lst;
+	char	*final_rot;
 
 	lst = ft_dll_builder(ac, av);
 	if (!lst)
@@ -118,7 +119,11 @@ int	main(int ac, char **av)
 		push_swap(&lst);
 	else
 		mini_push_swap(&lst);
+	if (find_target_pos(INT_MIN, lst) <= get_dll_size(lst) / 2)
+		final_rot = "ra";
+	else
+		final_rot = "rra";
 	while (lst->content > lst->prev->content)
-		exec("ra", &lst, NULL);
+		exec(final_rot, &lst, NULL);
 	ft_lstclear(lst);
 }
