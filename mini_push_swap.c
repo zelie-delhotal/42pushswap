@@ -6,13 +6,13 @@
 /*   By: gdelhota <gdelhota@student.42perpigna      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/26 02:35:12 by gdelhota          #+#    #+#             */
-/*   Updated: 2025/03/26 03:42:11 by gdelhota         ###   ########.fr       */
+/*   Updated: 2025/03/26 04:17:09 by gdelhota         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void mini_push_swap(t_dll **lsta)
+void	mini_push_swap(t_dll **lsta)
 {
 	t_dll	**lstb;
 	int		path[4];
@@ -30,4 +30,3 @@ void mini_push_swap(t_dll **lsta)
 		put_away_value(get_optimal_path(path, *lstb, *lsta), lsta, lstb);
 	free(lstb);
 }
-

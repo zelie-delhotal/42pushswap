@@ -6,13 +6,13 @@
 /*   By: gdelhota <gdelhota@student.42perpigna      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 19:34:57 by gdelhota          #+#    #+#             */
-/*   Updated: 2025/03/26 03:26:17 by gdelhota         ###   ########.fr       */
+/*   Updated: 2025/03/26 04:16:45 by gdelhota         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static int exec_rotate(char *instr, t_dll **lsta, t_dll **lstb)
+static int	exec_rotate(char *instr, t_dll **lsta, t_dll **lstb)
 {
 	if (str_equals(instr, "ra"))
 		*lsta = (*lsta)->next;
@@ -45,7 +45,7 @@ int	exec(char *instr, t_dll **lsta, t_dll **lstb)
 	t_dll	*temp;
 
 	if (instr[0] == 'r')
-		return (exec_rotate(instr, lsta, lstb));	
+		return (exec_rotate(instr, lsta, lstb));
 	else if (str_equals(instr, "pa"))
 		ft_lstpush(lstb, lsta);
 	else if (str_equals(instr, "pb"))
