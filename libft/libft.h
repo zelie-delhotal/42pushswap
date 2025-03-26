@@ -6,7 +6,7 @@
 /*   By: gdelhota <gdelhota@student.42perpignan.fr> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/05 15:11:11 by gdelhota          #+#    #+#             */
-/*   Updated: 2025/03/25 17:43:10 by gdelhota         ###   ########.fr       */
+/*   Updated: 2025/03/26 03:49:03 by gdelhota         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int		max(int a, int b);
 int		abs(int n);
 void	ft_array_copy(int *src, int *dst, int size);
 int		str_equals(char *stra, char *strb);
-void	ft_error(char *error);
+void	ft_error(int err_code, char *error);
 int		ft_safe_atoi(const char *str, int *res);
 t_dll	*ft_lstnew(int content);
 t_dll	*ft_dll_builder(int ac, char **av);

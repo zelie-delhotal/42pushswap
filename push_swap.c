@@ -6,7 +6,7 @@
 /*   By: gdelhota <gdelhota@student.42perpignan.fr  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/27 08:13:30 by gdelhota          #+#    #+#             */
-/*   Updated: 2025/03/25 22:07:52 by gdelhota         ###   ########.fr       */
+/*   Updated: 2025/03/26 03:41:10 by gdelhota         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,6 @@ void	push_swap(t_dll **lsta)
 	int		i;
 	int		path[4];
 
-	check_for_doubles(*lsta);
 	lstb = malloc(sizeof(t_dll **));
 	*lstb = NULL;
 	sublist = get_biggest_sublist(*lsta);
@@ -104,8 +103,6 @@ void	push_swap(t_dll **lsta)
 	free(sublist);
 	while (*lstb != NULL)
 		put_away_value(get_optimal_path(path, *lstb, *lsta), lsta, lstb);
-	while ((*lsta)->content > (*lsta)->prev->content)
-		exec("ra", lsta, lstb);
 	free(lstb);
 }
 
@@ -115,7 +112,13 @@ int	main(int ac, char **av)
 
 	lst = ft_dll_builder(ac, av);
 	if (!lst)
-		ft_error("Error");
-	push_swap(&lst);
+		ft_error(22, "Error");
+	check_for_doubles(lst);
+	if (get_dll_size(lst) > 5)
+		push_swap(&lst);
+	else
+		mini_push_swap(&lst);
+	while (lst->content > lst->prev->content)
+		exec("ra", &lst, NULL);
 	ft_lstclear(lst);
 }

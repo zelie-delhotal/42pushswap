@@ -6,11 +6,10 @@
 /*   By: gdelhota <gdelhota@student.42perpignan.fr  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/27 09:25:34 by gdelhota          #+#    #+#             */
-/*   Updated: 2025/03/25 22:11:53 by gdelhota         ###   ########.fr       */
+/*   Updated: 2025/03/25 23:03:04 by gdelhota         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft/libft.h"
 #include "push_swap.h"
 
 void	check_for_doubles(t_dll *lst)
@@ -29,7 +28,7 @@ void	check_for_doubles(t_dll *lst)
 			if (lst->content == compare->content)
 			{
 				ft_lstclear(lst);
-				ft_error("Error\n");
+				ft_error(22, "Error");
 			}
 			compare = compare->next;
 		}
@@ -43,7 +42,6 @@ int	find_target_pos(int value, t_dll *dst)
 	int		min_target;
 	int		target_pos;
 
-//	target_pos = 0;
 	pos = -1;
 	while (++pos < get_dll_size(dst))
 	{
@@ -105,12 +103,11 @@ int	*get_optimal_path(int *res, t_dll *src, t_dll *dst)
 	while (curr_node != src)
 	{
 		get_storing_path(path, curr_node, src, dst);
-		if ((abs(path[0]) + abs(path[2]) + abs(path[3])) 
+		if ((abs(path[0]) + abs(path[2]) + abs(path[3]))
 			< (abs(res[0]) + abs(res[2]) + abs(res[3])))
 			ft_array_copy(path, res, 4);
 		curr_node = curr_node->next;
 	}
-	//ft_printf("optimal path %d %d %d %d\n", res[0], res[1], res[2], res[3]);
 	return (res);
 }
 
@@ -119,7 +116,6 @@ void	put_away_value(int *path, t_dll **lsta, t_dll **lstb)
 	int	i;
 
 	i = 0;
-	//ft_printf("pushing path %d %d %d %d\n", path[0], path[1], path[2], path[3]);
 	while (i < abs(path[0]) || i < abs(path[2]) || i < abs(path[3]))
 	{
 		if (i < abs(path[0]) && path[1] && path[0] > 0)

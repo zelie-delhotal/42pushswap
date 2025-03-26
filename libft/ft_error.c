@@ -6,13 +6,13 @@
 /*   By: gdelhota <gdelhota@student.42perpigna      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 16:57:27 by gdelhota          #+#    #+#             */
-/*   Updated: 2025/03/19 16:57:48 by gdelhota         ###   ########.fr       */
+/*   Updated: 2025/03/25 22:57:16 by gdelhota         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_error(char *error)
+void	ft_error(int err_code, char *error)
 {
 	int	len;
 
@@ -20,5 +20,6 @@ void	ft_error(char *error)
 	while (error[len])
 		len++;
 	write(2, error, len);
-	exit(1);
+	write(2, "\n", 1);
+	exit(err_code);
 }
